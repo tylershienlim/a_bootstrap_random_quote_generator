@@ -1,0 +1,136 @@
+<html>
+    <head>
+        <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Random Quote Machine - hahaweta</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+        <script>            
+            window.onload = init;
+            function init(){
+                QuoteGenerator();
+            }
+
+            function numberGenerator(){
+                min = 0;
+                max = quoteList.length;
+                min = Math.ceil(min);
+                max = Math.floor(max);
+                return Math.floor(Math.random() * (max - min + 1) + min);
+            }
+
+            function QuoteGenerator(){
+                const indexer = numberGenerator();
+                let randomQuote = '"' + quoteList[indexer].quote + '"';
+                document.getElementById("text").innerText = randomQuote;
+                let authorQuote = ' - ' + quoteList[indexer].author;
+                document.getElementById("author").innerText = authorQuote;
+
+                let quoteAPI = randomQuote.replace(/ /g, "%20");
+                let authorAPI = authorQuote.replace(/ /g, "%20");
+                let twitterLink = "https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&amp;text=";
+                twitterLink += quoteAPI + authorAPI;
+                document.getElementById("tweet-quote").href = twitterLink;
+            }
+
+            function TweetQuote(){
+                console.log("tweet quote");
+                
+            }
+
+            const quoteList = [
+                {   
+                    author: "Barbara Joan Gordon",
+                    quote: "Wait for a hero? Barbara Joan Gordon -- Be your own damn hero"
+                },
+                {
+                    author: "Dick Grayson",
+                    quote: "You molded me and taught me, Bruce. For years, I lived under the shadow of The Batman. I wanted to get away, to be my own man. Yet, when I chose a costume and a name, they reflected you. You're a part of me, Bruce. I can't deny it. And I don't want to any longer. I just wanted you to know that. That, and one other thing -- I'm proud to have been Robin."
+                },
+                {
+                    author: "Harvey Dent",
+                    quote: "You either die a hero, or you live long enough to see yourself become the villain"
+                },
+                {
+                    author: "Alfred Pennyworth",
+                    quote: "The past can talk to the future... if the present has ears to hear and eyes to see with"
+                },
+                {
+                    author: "Bruce Wayne",
+                    quote: "Sometimes it's only madness that makes us what we are"
+                },
+                {
+                    author: "Batman",
+                    quote: "Did I finally reach the limits of reason? And find the Devil waiting? And was that fear in his eye?"
+                },
+                {
+                    author: "Jason Todd",
+                    quote: "Really? You don't think I understand what it's like to be abandoned? Forgotten? To be the Robin nobody trusts?"
+                },
+                {
+                    author: "Dick Grayson",
+                    quote: "I always wanted - expected to-to grow up and - and become him. And the hero bit, I'm still all in. But that thing inside of him, that thing that drives him to sacrifice everyhing for the sake of his mission, that's not me. I don't want to be THE Batman - anymore"
+                },
+                {
+                    author: "Batman",
+                    quote: "I am not a disgrace! I am vengeance! I am the night! I am BATMAN!"
+                },
+                {
+                    author: "Joker",
+                    quote: "Do you wanna know how I got these scars?"
+                },
+                {
+                    author: "Damian Wayne",
+                    quote: "I'm more Batman than you'll ever be. Just follow my lead."
+                },
+                {
+                    author: "Selina Kyle",
+                    quote: "Meow."
+                },
+                {
+                    author: "Tim Drake",
+                    quote: "But if Bruce taught me anything, it's that you have to have a game plan. For everything. Even for death."
+                },
+                {
+                    author: "Jason Todd",
+                    quote: "Thanks for thinking of me. I'm happy to help, Bruce. Honored, even. That'll be $150,000"
+                }
+            ]
+        </script>
+
+        <style>
+            * {
+                margin: 20px 20px 20px 20px;
+                padding: 20px 20px 20px 20px;
+                text-align: center;
+                font-size: 1.5rem;
+            }
+        </style>
+
+    </head>
+    <body>
+        <wrapper id="quote-box">
+            <div class="card">
+                <div class="card-header">
+                  Random Quotes From Batman Characters
+                </div>
+                <div class="card-body">
+                  <blockquote class="blockquote mb-0">
+                    <div id="text" ></div>
+                    <footer>
+                        <div id="author"></div>
+                    </footer>
+                  </blockquote>
+                </div>
+            </div>
+            <button class="btn btn-success" id="new-quote" onClick="QuoteGenerator();">New Quote</button>
+            <a size="10" class="btn btn-primary" id="tweet-quote" onClick="TweetQuote();" href="#"
+            target="_blank">Tweet Quote</a>
+        </wrapper>
+        <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
+    </body>
+</html>
