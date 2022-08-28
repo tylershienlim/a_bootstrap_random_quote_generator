@@ -22,21 +22,22 @@
 
             function QuoteGenerator(){
                 const indexer = numberGenerator();
-                let randomQuote = '"' + quoteList[indexer].quote + '"';
-                document.getElementById("text").innerText = randomQuote;
-                let authorQuote = ' - ' + quoteList[indexer].author;
-                document.getElementById("author").innerText = authorQuote;
+                let randomQuote = quoteList[indexer].quote;
+                let authorQuote = quoteList[indexer].author;              
+                let twitterLink = "https://twitter.com/intent/tweet?text=";
 
-                let quoteAPI = randomQuote.replace(/ /g, "%20");
-                let authorAPI = authorQuote.replace(/ /g, "%20");
-                let twitterLink = "https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&amp;text=";
-                twitterLink += quoteAPI + authorAPI;
+                let quoteInApiFormat = randomQuote.replace(/ /g, "%20");
+                twitterLink += quoteInApiFormat
+                let authorInApiFormat = authorQuote.replace(/ /g, "%20");
+                twitterLink += " - " + authorInApiFormat
+
                 document.getElementById("tweet-quote").href = twitterLink;
+                document.getElementById("text").innerText = randomQuote;
+                document.getElementById("author").innerText = authorQuote;
             }
 
             function TweetQuote(){
                 console.log("tweet quote");
-                
             }
 
             const quoteList = [
@@ -71,7 +72,7 @@
                 {
                     author: "Dick Grayson",
                     quote: "I always wanted - expected to-to grow up and - and become him. And the hero bit, I'm still all in. But that thing inside of him, that thing that drives him to sacrifice everyhing for the sake of his mission, that's not me. I don't want to be THE Batman - anymore"
-                },
+                }, 
                 {
                     author: "Batman",
                     quote: "I am not a disgrace! I am vengeance! I am the night! I am BATMAN!"
@@ -125,7 +126,7 @@
                 </div>
             </div>
             <button class="btn btn-success" id="new-quote" onClick="QuoteGenerator();">New Quote</button>
-            <a size="10" class="btn btn-primary" id="tweet-quote" onClick="TweetQuote();" href="#"
+            <a size="10" class="btn btn-primary" id="tweet-quote" href="#"
             target="_blank">Tweet Quote</a>
         </wrapper>
         <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
